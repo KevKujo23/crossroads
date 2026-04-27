@@ -1,0 +1,369 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap');
+
+:root {
+  /* World / Background */
+  --color-bg-deep: #0a1208;
+  --color-bg-forest: #0f1f10;
+  --color-bg-mid: #162318;
+  --color-mist: rgba(180, 210, 170, 0.06);
+
+  /* UI Surface (Parchment) */
+  --color-parchment: #e8d9a0;
+  --color-parchment-dark: #c9bc80;
+  --color-ink: #2a1f0e;
+  --color-ink-faded: #5a4a30;
+
+  /* Accents */
+  --color-gold: #c9a84c;
+  --color-gold-glow: rgba(201, 168, 76, 0.4);
+  --color-forest-glow: rgba(100, 200, 80, 0.15);
+  --color-particle: rgba(220, 255, 180, 0.7);
+
+  /* Borders */
+  --color-border-parchment: rgba(180, 150, 80, 0.5);
+  --color-border-forest: rgba(80, 140, 60, 0.3);
+
+  /* Typography */
+  --font-display: 'Cinzel Decorative', 'Playfair Display', serif;   /* Game title "Crossroads" */
+  --font-chapter: 'Cinzel', 'Trajan Pro', serif;                    /* Chapter titles */
+  --font-body: 'Crimson Text', 'EB Garamond', serif;                /* Narrative body text */
+  --font-choice: 'Courier Prime', 'Courier New', monospace;         /* Choice buttons */
+
+  /* Motion */
+  --transition-slow: 600ms ease;
+  --transition-med: 350ms ease;
+  --transition-fast: 180ms ease;
+
+  /* Radii */
+  --radius-card: 6px;
+  --radius-btn: 3px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--color-bg-deep);
+  color: var(--color-parchment);
+  font-family: var(--font-body);
+  line-height: 1.75;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  /* Layered forest background */
+  background-image: 
+    linear-gradient(to bottom, rgba(10, 18, 8, 0.8), rgba(15, 31, 16, 0.9)),
+    radial-gradient(circle at 50% 30%, var(--color-bg-mid) 0%, var(--color-bg-deep) 70%);
+}
+
+/* Background fog */
+body::after {
+  content: "";
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40vh;
+  background: linear-gradient(to top, var(--color-mist), transparent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 10;
+}
+
+.game-title {
+  font-family: var(--font-display);
+  color: var(--color-gold);
+  text-align: center;
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  animation: titleGlow 1.2s ease-out forwards;
+}
+
+@keyframes titleGlow {
+  0% {
+    opacity: 0;
+    text-shadow: 0 0 0 rgba(100, 200, 80, 0);
+  }
+  100% {
+    opacity: 1;
+    text-shadow: 0 0 30px var(--color-forest-glow), 0 0 10px rgba(201, 168, 76, 0.3);
+  }
+}
+
+.game-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  text-align: center;
+  color: var(--color-parchment-dark);
+  font-size: 1.2rem;
+}
+
+/* Dossier Card Styling (Now Parchment) */
+.dossier-card {
+  background-color: var(--color-parchment);
+  color: var(--color-ink);
+  padding: 3.5rem 3rem;
+  box-shadow: 
+    0 20px 50px rgba(0,0,0,0.6),
+    inset 0 0 40px rgba(0,0,0,0.05);
+  border-radius: var(--radius-card);
+  position: relative;
+  /* Torn edge simulation using subtle jagged border image or clip-path */
+  /* For simplicity and cross-browser, we'll use a texture and border */
+  border: 1px solid var(--color-border-parchment);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* Compass watermark */
+.dossier-card::after {
+  content: "✧";
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  font-size: 6rem;
+  color: var(--color-ink);
+  opacity: 0.04;
+  font-family: var(--font-display);
+  pointer-events: none;
+}
+
+.dossier-card h2 {
+  color: var(--color-ink);
+  font-family: var(--font-chapter);
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+.chapter-number {
+  font-family: var(--font-chapter);
+  color: var(--color-gold);
+  font-size: 0.9rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.narrative-text {
+  font-size: 1.15rem;
+  margin-bottom: 2.5rem;
+  white-space: pre-wrap;
+  color: var(--color-ink-faded);
+  max-width: 65ch;
+}
+
+/* Choice Buttons */
+.choice-button {
+  background: transparent;
+  color: var(--color-ink);
+  border: 1px solid var(--color-border-parchment);
+  border-radius: var(--radius-btn);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  text-align: left;
+  font-family: var(--font-choice);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: var(--transition-med);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.choice-button::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  background-color: var(--color-gold);
+  transition: width 150ms ease;
+}
+
+.choice-button:hover:not(:disabled) {
+  background: var(--color-parchment-dark);
+}
+
+.choice-button:hover:not(:disabled)::before {
+  width: 3px;
+}
+
+.choice-button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.choice-label {
+  font-weight: bold;
+  background-color: var(--color-ink);
+  color: var(--color-parchment);
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  font-size: 0.9rem;
+  z-index: 1;
+}
+
+.choice-button span:not(.choice-label) {
+  z-index: 1;
+}
+
+/* Character Select */
+.character-select-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+@media (min-width: 600px) {
+  .character-select-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.character-card {
+  background: transparent;
+  border: 1px solid var(--color-border-parchment);
+  border-radius: var(--radius-card);
+  padding: 1.5rem;
+  cursor: pointer;
+  color: var(--color-ink);
+  text-align: center;
+  transition: var(--transition-med);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.character-card:hover {
+  border-color: var(--color-gold);
+  background: rgba(201, 168, 76, 0.05);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.character-icon {
+  font-size: 2.5rem;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+.character-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-chapter);
+}
+
+.character-card p {
+  font-size: 0.95rem;
+  color: var(--color-ink-faded);
+  line-height: 1.4;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeIn var(--transition-med) forwards;
+}
+
+.slide-up {
+  animation: slideUp 400ms ease forwards;
+}
+
+/* Score Bar */
+.score-bar-container {
+  margin-bottom: 1.5rem;
+}
+
+.score-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-choice);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-ink);
+}
+
+.score-bar-track {
+  height: 8px;
+  background: var(--color-parchment-dark);
+  border-radius: var(--radius-btn);
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  width: 0;
+  transition: width 700ms ease-out;
+}
+
+.score-u .score-bar-fill { background: #4a8c3f; }
+.score-k .score-bar-fill { background: var(--color-gold); }
+.score-p .score-bar-fill { background: #8b3a3a; }
+
+/* Particles */
+.particles-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  background: var(--color-particle);
+  border-radius: 50%;
+  filter: blur(1px);
+  opacity: 0;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.5);
+    opacity: 0;
+  }
+}
