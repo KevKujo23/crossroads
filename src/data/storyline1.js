@@ -8,13 +8,13 @@ export const storyline1 = [
         label: "A",
         text: "Publish the footage",
         outcome: "You upload it through your contacts. Within hours, it spreads. International outlets begin picking it up. The narrative shifts — this is no longer rumor, it's evidence. Then, days later, you hear: someone has been arrested. You don't know if it's the source. But you suspect it is.",
-        scores: { U: 1, K: 1, P: 0 }
+        scores: { U: 1, K: 1, P: 0, V: 0 }
       },
       {
         label: "B",
         text: "Do not publish",
         outcome: "The footage stays with you. Unseen. Unverified. Unshared. No one challenges it.",
-        scores: { U: 0, K: 0, P: 1 }
+        scores: { U: 0, K: 0, P: 1, V: 0 }
       }
     ]
   },
@@ -27,13 +27,13 @@ export const storyline1 = [
         label: "A",
         text: "Bypass the blackout",
         outcome: "You find a way through contacts, through risk. You send reports out. Your stories begin appearing internationally again. Then one day, your device glitches. A notification appears briefly — unknown access. You realize: they may have found you.",
-        scores: { U: 1, K: 1, P: 1 }
+        scores: { U: 1, K: 1, P: 1, V: 0 }
       },
       {
         label: "B",
         text: "Comply with the blackout",
         outcome: "You stop trying. Days and weeks pass. State media becomes the only narrative.",
-        scores: { U: 0, K: 0, P: 0 }
+        scores: { U: 0, K: 0, P: 0, V: 0 }
       }
     ]
   },
@@ -46,13 +46,13 @@ export const storyline1 = [
         label: "A",
         text: "Continue independent reporting",
         outcome: "You keep going. But every move is watched. You need to avoid certain streets. It lessens your quality of reporting in real time.",
-        scores: { U: 1, K: 1, P: 1 }
+        scores: { U: 1, K: 1, P: 1, V: 0 }
       },
       {
         label: "B",
         text: "Align with authorities",
         outcome: "You accept subtle guidance. Your stories are approved. You gain access again. You are safer.",
-        scores: { U: 0, K: 0, P: 0 }
+        scores: { U: 0, K: 0, P: 0, V: 0 }
       }
     ]
   },
@@ -65,13 +65,13 @@ export const storyline1 = [
         label: "A",
         text: "Preserve the evidence",
         outcome: "You store everything — hidden drives, secure transfers. You are no longer just a journalist, but an archive.",
-        scores: { U: 1, K: 1, P: 1 }
+        scores: { U: 1, K: 1, P: 1, V: 0 }
       },
       {
         label: "B",
         text: "Let it be erased",
         outcome: "You delete the files. You tell yourself it's safer. And it is.",
-        scores: { U: 0, K: 0, P: 0 }
+        scores: { U: 0, K: 0, P: 0, V: 0 }
       }
     ]
   },
@@ -84,13 +84,13 @@ export const storyline1 = [
         label: "A",
         text: "Reject the offer",
         outcome: "You decline. Less reach, but you remain independent.",
-        scores: { U: 1, K: 1, P: 1 }
+        scores: { U: 1, K: 1, P: 1, V: 0 }
       },
       {
         label: "B",
         text: "Accept the offer",
         outcome: "You gain everything: speed, reach, visibility in reporting.",
-        scores: { U: 1, K: 0, P: 0 }
+        scores: { U: 1, K: 0, P: 0, V: 0 }
       }
     ]
   },
@@ -103,13 +103,13 @@ export const storyline1 = [
         label: "A",
         text: "Stay authentic",
         outcome: "Your work remains complex, nuanced, real. But it doesn't spread as far.",
-        scores: { U: 0, K: 1, P: 1 }
+        scores: { U: 0, K: 1, P: 1, V: 0 }
       },
       {
         label: "B",
         text: "Shape the narrative",
         outcome: "You simplify. Your stories go viral. But they are no longer complete.",
-        scores: { U: 1, K: 0, P: 0 }
+        scores: { U: 1, K: 0, P: 0, V: 0 }
       }
     ]
   },
@@ -122,13 +122,13 @@ export const storyline1 = [
         label: "A",
         text: "Protect the truth",
         outcome: "You are arrested. Or forced into hiding. Your work survives. You become part of the story.",
-        scores: { U: 0, K: 1, P: 1 }
+        scores: { U: 0, K: 1, P: 1, V: 0 }
       },
       {
         label: "B",
         text: "Protect your life and career",
         outcome: "You remain. You continue working. But differently.",
-        scores: { U: 1, K: 0, P: 0 }
+        scores: { U: 1, K: 0, P: 0, V: 0 }
       }
     ]
   }

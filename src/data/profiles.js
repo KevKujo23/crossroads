@@ -1,10 +1,13 @@
-export const determineProfile = (u, k, p) => {
-  if (u > k && u > p) return "The Consequentialist";
-  if (k > u && k > p) return "The Kantian";
-  if (p > u && p > k) return "The Personalist";
-  if (u === k && u > p) return "The Pragmatic Idealist";
-  if (u === p && u > k) return "The Protective Utilitarian";
-  if (k === p && k > u) return "The Kantian-Personalist";
+export const determineProfile = (u, k, p, v) => {
+  const max = Math.max(u, k, p, v);
+  if (v === max && v > p && v > u && v > k) return "The Virtuous";
+  if (v === max && p === max && v > u && v > k) return "The Personalist-Virtuous";
+  if (u === max && u > k && u > p && u > v) return "The Consequentialist";
+  if (k === max && k > u && k > p && k > v) return "The Kantian";
+  if (p === max && p > u && p > k && p > v) return "The Personalist";
+  if (u === max && k === max && u > p && u > v) return "The Pragmatic Idealist";
+  if (u === max && p === max && u > k && u > v) return "The Protective Utilitarian";
+  if (k === max && p === max && k > u && k > v) return "The Kantian-Personalist";
   return "The Undecided";
 };
 
@@ -70,6 +73,24 @@ export const profiles = {
       iranian: "As an Iranian journalist, the impossible situation tore you between impact, duty, and human life. Your varied choices reflect the sheer chaos of trying to be ethical under an oppressive regime.",
       us: "As a U.S. journalist, you found no single ethical framework sufficient for the complexities of conflict reporting. You judged each situation differently, leaving a mixed but deeply considered legacy.",
       civilian: "As a civilian, you were pulled in every direction by the unfolding crisis. You tried to calculate outcomes, fulfill your duties, and protect individuals, ultimately showing that survival itself defies simple rules."
+    }
+  },
+  "The Virtuous": {
+    label: "The Virtuous",
+    description: "\"You build character through action. You look beyond immediate duty or consequence, focusing on integrity, moral courage, and long-term human flourishing.\"",
+    reflections: {
+      iranian: "As an Iranian journalist, you acted with courage despite the oppressive regime, forging a resilient moral character in the face of fear.",
+      us: "As a U.S. journalist, you demonstrated unyielding integrity, proving that true professional excellence is rooted in personal virtue.",
+      civilian: "As a civilian, your choices reflected deep moral courage, habituating goodness even when survival alone would have been justified."
+    }
+  },
+  "The Personalist-Virtuous": {
+    label: "The Personalist-Virtuous",
+    description: "\"Your ethics converge. You believe that true moral character is forged precisely by protecting the inherent dignity of others.\"",
+    reflections: {
+      iranian: "As an Iranian journalist, your courage was entirely directed toward protecting the vulnerable. Your virtue was defined by your care.",
+      us: "As a U.S. journalist, your integrity manifested as an unyielding defense of your sources' humanity, refusing to separate character from compassion.",
+      civilian: "As a civilian, you showed that the highest form of bravery is found in standing with others and honoring their profound worth."
     }
   }
 };

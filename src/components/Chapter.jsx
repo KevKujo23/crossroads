@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useGame } from '../context/GameContext';
 import { TypewriterText } from './TypewriterText';
 import { ChoiceButton } from './ChoiceButton';
+import { LiveScoreTracker } from './LiveScoreTracker';
 
 export function Chapter({ chapterData, isLastChapter }) {
   const { dispatch } = useGame();
@@ -38,7 +39,8 @@ export function Chapter({ chapterData, isLastChapter }) {
   };
 
   return (
-    <div className="dossier-card slide-up">
+    <div className="dossier-card slide-up" style={{ marginTop: '60px' }}>
+      <LiveScoreTracker />
       <div className="fade-in">
         {chapterData.title.includes(':') ? (
           <>

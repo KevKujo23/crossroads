@@ -4,7 +4,7 @@ const initialState = {
   storyline: null,
   currentChapterIndex: 0,
   choices: [],
-  scores: { U: 0, K: 0, P: 0 },
+  scores: { U: 0, K: 0, P: 0, V: 0 },
   phase: "select"
 };
 
@@ -24,7 +24,8 @@ function gameReducer(state, action) {
         scores: {
           U: state.scores.U + scores.U,
           K: state.scores.K + scores.K,
-          P: state.scores.P + scores.P
+          P: state.scores.P + scores.P,
+          V: state.scores.V + (scores.V || 0)
         }
       };
     }

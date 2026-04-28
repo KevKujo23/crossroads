@@ -80,7 +80,7 @@ function AppContent() {
       
       <div className="app-container">
         <header style={{ marginBottom: '3rem', textAlign: 'center' }}>
-          <h1 className="game-title">Crossroads</h1>
+          <h1 className="game-title">GREY'S ANTHROPOLOGY</h1>
           <p className="game-subtitle">Every story begins with a choice.</p>
         </header>
         

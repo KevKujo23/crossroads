@@ -2,16 +2,17 @@ import React, { useMemo } from 'react';
 import { useGame } from '../context/GameContext';
 import { ScoreBar } from './ScoreBar';
 import { determineProfile, profiles } from '../data/profiles';
+import { FrameworkGlossary } from './FrameworkGlossary';
 
 export function EndScreen() {
   const { state, dispatch } = useGame();
   
   const { profileLabel, reflection, maxScore } = useMemo(() => {
-    const pLabel = determineProfile(state.scores.U, state.scores.K, state.scores.P);
+    const pLabel = determineProfile(state.scores.U, state.scores.K, state.scores.P, state.scores.V || 0);
     const pData = profiles[pLabel];
     const reflectionText = pData.reflections[state.storyline];
     
-    const mScore = Math.max(state.scores.U, state.scores.K, state.scores.P, 1);
+    const mScore = Math.max(state.scores.U, state.scores.K, state.scores.P, state.scores.V || 0, 1);
     
     return {
       profileLabel: pLabel,
@@ -45,6 +46,7 @@ export function EndScreen() {
         <div className="score-u"><ScoreBar label="Utilitarianism (U)" score={state.scores.U} maxScore={maxScore} /></div>
         <div className="score-k"><ScoreBar label="Kantian Duty (K)" score={state.scores.K} maxScore={maxScore} /></div>
         <div className="score-p"><ScoreBar label="Personalism (P)" score={state.scores.P} maxScore={maxScore} /></div>
+        <div className="score-v"><ScoreBar label="Virtue Ethics (V)" score={state.scores.V || 0} maxScore={maxScore} /></div>
       </div>
 
       <div style={{ margin: '3rem 0', background: 'transparent', padding: '1.5rem', border: '1px solid var(--color-border-parchment)', textAlign: 'center' }}>
@@ -61,6 +63,7 @@ export function EndScreen() {
       </div>
 
       <div style={{ marginTop: '2rem', textAlign: 'center' }}>
+        <FrameworkGlossary />
         <button 
           className="choice-button" 
           onClick={handleRestart}

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useGame } from '../context/GameContext';
+import { FrameworkGlossary } from './FrameworkGlossary';
 
 export function CharacterSelect() {
   const { dispatch } = useGame();
@@ -27,7 +28,7 @@ export function CharacterSelect() {
               <circle cx="12" cy="12" r="3" />
             </svg>
           </div>
-          <h3>Subject 01: The Local</h3>
+          <h3>Nasrin</h3>
           <p>Iranian Journalist</p>
           <p style={{ marginTop: '1rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
             Operating under restrictions. Information is highly unstable.
@@ -45,8 +46,8 @@ export function CharacterSelect() {
               <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
             </svg>
           </div>
-          <h3>Subject 02: The Correspondent</h3>
-          <p>US-Based Journalist</p>
+          <h3>David</h3>
+          <p>US Journalist</p>
           <p style={{ marginTop: '1rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
             Relying on institutional access. Balancing credibility with truth.
           </p>
@@ -65,13 +66,14 @@ export function CharacterSelect() {
               <path d="M16 3.13a4 4 0 0 1 0 7.75" />
             </svg>
           </div>
-          <h3>Subject 03: The Witness</h3>
-          <p>Civilian</p>
+          <h3>Parisa</h3>
+          <p>Iranian Citizen</p>
           <p style={{ marginTop: '1rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
             No official protection. Faced with the choice to speak or survive.
           </p>
         </div>
       </div>
+      <FrameworkGlossary />
     </div>
   );
 }

@@ -328,6 +328,23 @@ body::after {
 .score-u .score-bar-fill { background: #4a8c3f; }
 .score-k .score-bar-fill { background: var(--color-gold); }
 .score-p .score-bar-fill { background: #8b3a3a; }
+.score-v .score-bar-fill { background: #6b8c96; }
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--color-bg-deep);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--color-border-parchment);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold);
+}
 
 /* Particles */
 .particles-container {
