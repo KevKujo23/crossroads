@@ -44,7 +44,6 @@ export function IntroPage() {
         {/* Section 1 — Title Block */}
         <div className="intro-section intro-title-block" ref={addRef}>
           <h1 className="intro-main-title">Grey's Anthropology</h1>
-          <p className="intro-subtitle">Fighting for the Missing Peace</p>
         </div>
 
         {/* Section 2 — Background Context */}
@@ -55,28 +54,6 @@ export function IntroPage() {
             military and nuclear sites, and Iran responded with strikes across the region, causing
             major damage and instability. Journalists covering it face serious risks, reporting under
             bombings, censorship, and threats while trying to show what's really happening.
-          </p>
-        </div>
-
-        {/* Section 3 — What This Is */}
-        <div className="intro-section intro-card" ref={addRef}>
-          <h2 className="intro-section-heading">What Is This?</h2>
-          <p className="intro-body-text">
-            This is an interactive ethical story game. You will step into the shoes of one of three
-            characters caught in the conflict and navigate a series of high-stakes decisions across
-            multiple chapters. Each choice you make is tracked against three ethical frameworks —{' '}
-            <strong>Utilitarianism</strong>, <strong>Kantian Ethics</strong>, and{' '}
-            <strong>Personalism</strong> — and at the end, you will see which framework most closely
-            reflects your values.
-          </p>
-        </div>
-
-        {/* Section 4 — Dissemination Note */}
-        <div className="intro-section intro-card intro-card--muted" ref={addRef}>
-          <p className="intro-dissemination-text">
-            <span className="intro-dissemination-label">Research Note</span>
-            This experience was pre-tested with participants outside a classroom setting, with no
-            prior explanation given, to simulate authentic decision-making under pressure.
           </p>
         </div>
 
