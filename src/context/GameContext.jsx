@@ -5,11 +5,16 @@ const initialState = {
   currentChapterIndex: 0,
   choices: [],
   scores: { U: 0, K: 0, P: 0, V: 0 },
-  phase: "select"
+  phase: "intro"
 };
 
 function gameReducer(state, action) {
   switch (action.type) {
+    case 'GO_TO_SELECT':
+      return {
+        ...initialState,
+        phase: "select"
+      };
     case 'SELECT_STORYLINE':
       return {
         ...initialState,
@@ -35,9 +40,15 @@ function gameReducer(state, action) {
         currentChapterIndex: state.currentChapterIndex + action.payload.advance
       };
     case 'END_GAME':
+      // Transition through reflection phase first, then to end
       return {
         ...state,
         phase: "end"
+      };
+    case 'SHOW_REFLECTION':
+      return {
+        ...state,
+        phase: "reflection"
       };
     case 'RESET_GAME':
       return initialState;

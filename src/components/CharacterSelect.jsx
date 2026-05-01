@@ -1,12 +1,86 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useGame } from '../context/GameContext';
 import { FrameworkGlossary } from './FrameworkGlossary';
+import { gsap } from 'gsap';
+
+import iranCitizenImg from '../assets/irancitizen.png';
+import iranJournalistImg from '../assets/iranjournalist.png';
+import usJournalistImg from '../assets/usjournalist.png';
+
+const STORYLINES = [
+  {
+    key: 'iranian',
+    name: 'Nasrin',
+    role: 'Iranian Journalist',
+    description: 'Operating under restrictions. Information is highly unstable.',
+    storyTitle: 'To Speak or To Survive',
+    image: iranJournalistImg,
+    imageAlt: 'Iranian journalist in green hooded jacket with camera',
+  },
+  {
+    key: 'us',
+    name: 'David',
+    role: 'US Journalist',
+    description: 'Relying on institutional access. Balancing credibility with truth.',
+    storyTitle: 'The Weight of the Lens',
+    image: usJournalistImg,
+    imageAlt: 'Blonde male journalist with camera in brown coat',
+  },
+  {
+    key: 'civilian',
+    name: 'Parisa',
+    role: 'Iranian Citizen',
+    description: 'No official protection. Faced with the choice to speak or survive.',
+    storyTitle: 'To Speak or To Survive',
+    image: iranCitizenImg,
+    imageAlt: 'Woman in hijab and blue robe',
+  },
+];
 
 export function CharacterSelect() {
   const { dispatch } = useGame();
+  const cardRefs = useRef([]);
+  const charImgRefs = useRef([]);
 
   const handleSelect = (storyline) => {
     dispatch({ type: 'SELECT_STORYLINE', payload: storyline });
+  };
+
+  useEffect(() => {
+    // Defer past StrictMode's double-invoke cleanup cycle
+    const t = setTimeout(() => {
+      // GSAP entrance: characters float + fade in with stagger
+      gsap.fromTo(
+        charImgRefs.current.filter(Boolean),
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out', stagger: 0.2, delay: 0.1 }
+      );
+
+      // GSAP entrance: cards slide up
+      gsap.fromTo(
+        cardRefs.current.filter(Boolean),
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out', stagger: 0.15, delay: 0.05 }
+      );
+    }, 0);
+
+    return () => clearTimeout(t);
+  }, []);
+
+  const handleCardMouseEnter = (index) => {
+    gsap.to(charImgRefs.current[index], {
+      y: -8,
+      duration: 0.35,
+      ease: 'power2.out',
+    });
+  };
+
+  const handleCardMouseLeave = (index) => {
+    gsap.to(charImgRefs.current[index], {
+      y: 0,
+      duration: 0.35,
+      ease: 'power2.out',
+    });
   };
 
   return (
@@ -17,62 +91,36 @@ export function CharacterSelect() {
       </p>
 
       <div className="character-select-grid">
-        <div 
-          className="character-card fade-in" 
-          onClick={() => handleSelect('iranian')}
-          style={{ animationDelay: '0ms' }}
-        >
-          <div className="character-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-              <circle cx="12" cy="12" r="3" />
-            </svg>
-          </div>
-          <h3>Nasrin</h3>
-          <p>Iranian Journalist</p>
-          <p style={{ marginTop: '1rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
-            Operating under restrictions. Information is highly unstable.
-          </p>
-        </div>
+        {STORYLINES.map((s, i) => (
+          <div
+            key={s.key}
+            id={`character-card-${s.key}`}
+            className="character-card"
+            ref={(el) => { cardRefs.current[i] = el; }}
+            onClick={() => handleSelect(s.key)}
+            onMouseEnter={() => handleCardMouseEnter(i)}
+            onMouseLeave={() => handleCardMouseLeave(i)}
+          >
+            {/* Character illustration */}
+            <div className="character-illustration-wrapper">
+              <img
+                ref={(el) => { charImgRefs.current[i] = el; }}
+                src={s.image}
+                alt={s.imageAlt}
+                className="character-illustration"
+              />
+            </div>
 
-        <div 
-          className="character-card fade-in" 
-          onClick={() => handleSelect('us')}
-          style={{ animationDelay: '100ms' }}
-        >
-          <div className="character-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="10" />
-              <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-            </svg>
+            <h3>{s.name}</h3>
+            <p>{s.role}</p>
+            <p className="character-story-tag">{s.storyTitle}</p>
+            <p style={{ marginTop: '0.75rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
+              {s.description}
+            </p>
           </div>
-          <h3>David</h3>
-          <p>US Journalist</p>
-          <p style={{ marginTop: '1rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
-            Relying on institutional access. Balancing credibility with truth.
-          </p>
-        </div>
-
-        <div 
-          className="character-card fade-in" 
-          onClick={() => handleSelect('civilian')}
-          style={{ animationDelay: '200ms' }}
-        >
-          <div className="character-icon">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-              <circle cx="9" cy="7" r="4" />
-              <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-              <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-            </svg>
-          </div>
-          <h3>Parisa</h3>
-          <p>Iranian Citizen</p>
-          <p style={{ marginTop: '1rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
-            No official protection. Faced with the choice to speak or survive.
-          </p>
-        </div>
+        ))}
       </div>
+
       <FrameworkGlossary />
     </div>
   );

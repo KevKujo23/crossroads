@@ -32,7 +32,7 @@ export function Chapter({ chapterData, isLastChapter }) {
     });
 
     if (isLastChapter) {
-      dispatch({ type: 'END_GAME' });
+      dispatch({ type: 'SHOW_REFLECTION' });
     } else {
       dispatch({ type: 'NEXT_CHAPTER', payload: { advance: 1 } });
     }
