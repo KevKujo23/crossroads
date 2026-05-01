@@ -83,6 +83,26 @@ body::after {
   z-index: 10;
 }
 
+/* Wider container for the conjoined intro+select page */
+.app-container--wide {
+  max-width: 900px;
+  padding: 0 1rem 3rem;
+}
+
+/* Conjoined page wrapper */
+.conjoined-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* The dossier card on the select section sits flush below the intro */
+.conjoined-select-card {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  margin-top: -1px; /* merge border with intro bottom */
+}
+
 .game-title {
   font-family: var(--font-display);
   color: var(--color-gold);

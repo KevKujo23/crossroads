@@ -5,7 +5,7 @@ const initialState = {
   currentChapterIndex: 0,
   choices: [],
   scores: { U: 0, K: 0, P: 0, V: 0 },
-  phase: "intro"
+  phase: "select"
 };
 
 function gameReducer(state, action) {

@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { useGame } from './context/GameContext';
-import { IntroPage } from './components/IntroPage';
 import { CharacterSelect } from './components/CharacterSelect';
 import { Chapter } from './components/Chapter';
 import { EndScreen } from './components/EndScreen';
@@ -21,14 +20,6 @@ function AppContent() {
   }, [state.storyline]);
 
   const renderPhase = () => {
-    if (state.phase === 'intro') {
-      return (
-        <TransitionWrapper transitionKey="intro">
-          <IntroPage />
-        </TransitionWrapper>
-      );
-    }
-
     if (state.phase === 'select') {
       return (
         <TransitionWrapper transitionKey="select">
@@ -78,33 +69,9 @@ function AppContent() {
     }));
   }, []);
 
-  // On the intro page, render full-bleed without the app-container header
-  if (state.phase === 'intro') {
-    return (
-      <>
-        <div className="particles-container">
-          {particles.map(p => (
-            <div
-              key={p.id}
-              className="particle"
-              style={{
-                left: p.left,
-                width: p.size,
-                height: p.size,
-                animationDuration: p.animationDuration,
-                animationDelay: p.animationDelay
-              }}
-            />
-          ))}
-        </div>
-        <div className="app-container" style={{ maxWidth: '100%', padding: 0 }}>
-          <main style={{ flex: 1 }}>
-            {renderPhase()}
-          </main>
-        </div>
-      </>
-    );
-  }
+  // The select phase owns its own title via the conjoined component — no header needed there.
+  // All other phases get the standard app-container with the GREY'S ANTHROPOLOGY header.
+  const showHeader = state.phase !== 'select';
 
   return (
     <>
@@ -124,10 +91,12 @@ function AppContent() {
         ))}
       </div>
 
-      <div className="app-container">
-        <header style={{ marginBottom: '3rem', textAlign: 'center' }}>
-          <h1 className="game-title">GREY'S ANTHROPOLOGY</h1>
-        </header>
+      <div className={`app-container${state.phase === 'select' ? ' app-container--wide' : ''}`}>
+        {showHeader && (
+          <header style={{ marginBottom: '3rem', textAlign: 'center' }}>
+            <h1 className="game-title">GREY'S ANTHROPOLOGY</h1>
+          </header>
+        )}
 
         <main style={{ flex: 1 }}>
           {renderPhase()}

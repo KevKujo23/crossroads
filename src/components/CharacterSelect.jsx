@@ -41,26 +41,33 @@ export function CharacterSelect() {
   const { dispatch } = useGame();
   const cardRefs = useRef([]);
   const charImgRefs = useRef([]);
+  const introRefs = useRef([]);
 
   const handleSelect = (storyline) => {
     dispatch({ type: 'SELECT_STORYLINE', payload: storyline });
   };
 
   useEffect(() => {
-    // Defer past StrictMode's double-invoke cleanup cycle
     const t = setTimeout(() => {
-      // GSAP entrance: characters float + fade in with stagger
+      // Stagger the intro header + background card in
       gsap.fromTo(
-        charImgRefs.current.filter(Boolean),
-        { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out', stagger: 0.2, delay: 0.1 }
+        introRefs.current.filter(Boolean),
+        { opacity: 0, y: 28 },
+        { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', stagger: 0.2, delay: 0.05 }
       );
 
-      // GSAP entrance: cards slide up
+      // Character cards slide up
       gsap.fromTo(
         cardRefs.current.filter(Boolean),
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out', stagger: 0.15, delay: 0.05 }
+        { y: 0, opacity: 1, duration: 0.7, ease: 'power2.out', stagger: 0.15, delay: 0.45 }
+      );
+
+      // Character illustrations float in
+      gsap.fromTo(
+        charImgRefs.current.filter(Boolean),
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.9, ease: 'power2.out', stagger: 0.2, delay: 0.5 }
       );
     }, 0);
 
@@ -68,60 +75,87 @@ export function CharacterSelect() {
   }, []);
 
   const handleCardMouseEnter = (index) => {
-    gsap.to(charImgRefs.current[index], {
-      y: -8,
-      duration: 0.35,
-      ease: 'power2.out',
-    });
+    gsap.to(charImgRefs.current[index], { y: -8, duration: 0.35, ease: 'power2.out' });
   };
 
   const handleCardMouseLeave = (index) => {
-    gsap.to(charImgRefs.current[index], {
-      y: 0,
-      duration: 0.35,
-      ease: 'power2.out',
-    });
+    gsap.to(charImgRefs.current[index], { y: 0, duration: 0.35, ease: 'power2.out' });
   };
 
   return (
-    <div className="dossier-card slide-up">
-      <h2>Select Subject Profile</h2>
-      <p style={{ marginBottom: '2rem', color: 'var(--color-muted)' }}>
-        Accessing central database. Please select a profile to review their encrypted logs.
-      </p>
+    <div className="conjoined-page">
 
-      <div className="character-select-grid">
-        {STORYLINES.map((s, i) => (
+      {/* ── INTRO SECTION ─────────────────────────────── */}
+      <div className="intro-page" style={{ minHeight: 'unset', position: 'relative' }}>
+        <div className="intro-athena-overlay" aria-hidden="true" />
+
+        <div className="intro-content" style={{ paddingBottom: '1rem' }}>
+
+          {/* Title */}
           <div
-            key={s.key}
-            id={`character-card-${s.key}`}
-            className="character-card"
-            ref={(el) => { cardRefs.current[i] = el; }}
-            onClick={() => handleSelect(s.key)}
-            onMouseEnter={() => handleCardMouseEnter(i)}
-            onMouseLeave={() => handleCardMouseLeave(i)}
+            className="intro-section intro-title-block"
+            ref={(el) => { introRefs.current[0] = el; }}
           >
-            {/* Character illustration */}
-            <div className="character-illustration-wrapper">
-              <img
-                ref={(el) => { charImgRefs.current[i] = el; }}
-                src={s.image}
-                alt={s.imageAlt}
-                className="character-illustration"
-              />
-            </div>
+            <h1 className="intro-main-title">Grey's Anthropology</h1>
+          </div>
 
-            <h3>{s.name}</h3>
-            <p>{s.role}</p>
-            <p className="character-story-tag">{s.storyTitle}</p>
-            <p style={{ marginTop: '0.75rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
-              {s.description}
+          {/* Background card */}
+          <div
+            className="intro-section intro-card"
+            ref={(el) => { introRefs.current[1] = el; }}
+          >
+            <h2 className="intro-section-heading">Background</h2>
+            <p className="intro-body-text">
+              The U.S.–Iran war (2026) is a conflict where the U.S. and its allies attacked Iran's
+              military and nuclear sites, and Iran responded with strikes across the region, causing
+              major damage and instability. Journalists covering it face serious risks, reporting
+              under bombings, censorship, and threats while trying to show what's really happening.
             </p>
           </div>
-        ))}
+
+        </div>
       </div>
 
-      <FrameworkGlossary />
+      {/* ── CHARACTER SELECT SECTION ──────────────────── */}
+      <div className="dossier-card conjoined-select-card">
+        <h2>Select Subject Profile</h2>
+        <p style={{ marginBottom: '2rem', color: 'var(--color-ink-faded)' }}>
+          Accessing central database. Please select a profile to review their encrypted logs.
+        </p>
+
+        <div className="character-select-grid">
+          {STORYLINES.map((s, i) => (
+            <div
+              key={s.key}
+              id={`character-card-${s.key}`}
+              className="character-card"
+              ref={(el) => { cardRefs.current[i] = el; }}
+              onClick={() => handleSelect(s.key)}
+              onMouseEnter={() => handleCardMouseEnter(i)}
+              onMouseLeave={() => handleCardMouseLeave(i)}
+            >
+              <div className="character-illustration-wrapper">
+                <img
+                  ref={(el) => { charImgRefs.current[i] = el; }}
+                  src={s.image}
+                  alt={s.imageAlt}
+                  className="character-illustration"
+                />
+              </div>
+
+              <h3>{s.name}</h3>
+              <p>{s.role}</p>
+              <p className="character-story-tag">{s.storyTitle}</p>
+              <p style={{ marginTop: '0.75rem', fontStyle: 'italic', fontSize: '0.85rem' }}>
+                {s.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        <FrameworkGlossary />
+      </div>
+
     </div>
   );
 }
