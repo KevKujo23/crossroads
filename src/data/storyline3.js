@@ -1,127 +1,90 @@
-export const introduction = "You are not a journalist. You are a civilian watching your city fracture. The news says US and Israeli airstrikes destroyed the local school. But the whispers on the street, and the videos passed in secret, say something else: the regime did it to their own people. You have a phone, a conscience, and a choice.";
+export const introduction = "You are Parisa, an Iranian citizen. You are not a journalist, but a civilian watching your city fracture. The news says foreign airstrikes destroyed a local school, but the whispers on the street—and the videos passed in secret—say something else. You have a phone, a conscience, and a choice.";
 
 export const storyline3 = [
   {
-    id: "s2",
-    title: "Scenario 1: The Video",
+    id: "s1",
+    title: "Chapter 1: THE VIDEO",
     narrative: "You receive a video from a friend. It clearly shows regime forces planting the explosives at the school—not a foreign airstrike. At the end, there's a message: 'Share this. People need to see.' You know posting it exposes the propaganda, but it could also expose you and the people in the video to severe regime retaliation.",
     choices: [
       {
         label: "A",
-        text: "Don't share it at all. Stay silent.",
-        outcome: "The video stays hidden. You prioritize Personalism and Virtue Ethics through survival—protecting your own life and dignity. Alternatively, from a Consequentialist view, you calculate that protesting would lead to more harm than good right now.",
-        scores: { U: 1, K: 0, P: 1, V: 0 }
+        text: "Don't share it at all, stay silent",
+        outcome: "You choose to keep it safe to avoid the atrocities you might face if you shared it. However, suppressing the truth allows false narratives to dominate, and public debates become grounded in propaganda instead of reality.\n\nEthical Frameworks:\n- Personalism: Protecting others' safety comes first.",
+        scores: { U: 0, K: 0, P: 1, V: 0 }
       },
       {
         label: "B",
-        text: "Share it privately (trusted people only).",
-        outcome: "The truth spreads, but in a controlled way. You reduce risk, but also limit impact.",
+        text: "Share it privately (trusted people only)",
+        outcome: "These people would share it to other people or loved ones, and because of this it has been posted. Because of your video, not only your life is at stake but also it could cause potential harm to the last person who shared and your friend as the source.\n\nOutcome: The information spreads—but in a controlled way. You reduce risk, but also limit impact. You're helping—but not fully.\n\nEthical Frameworks:\n- Virtue Ethics: Balance between caution and responsibility.\n- Personalism: You try to inform without fully exposing others.",
         scores: { U: 0, K: 0, P: 1, V: 1 }
       },
       {
         label: "C",
-        text: "Post it publicly. Oppose the regime.",
-        outcome: "The video spreads widely. You act on Kantian Duty—human dignity and truth are non-negotiable. However, you are now a target. Opposing the regime openly could result in you being jailed or worse.",
-        scores: { U: 0, K: 1, P: 1, V: 0 }
+        text: "Post it publicly",
+        outcome: "You share the truth with the public because they deserve to know. You want to spread awareness globally so other nations can understand the real events that have been unfolding. However, you are putting the life of the original source at stake. Your friend could be tracked, harmed, or even killed.\n\nEthical Frameworks:\n- Kantian Duty Ethics: Truth should be revealed, even if risky.\n- Personalism (community): Awareness can protect dignity on a larger scale.\n- Utilitarianism: Prioritizes the greater good of global awareness.",
+        scores: { U: 1, K: 1, P: 1, V: 0 }
+      }
+    ]
+  },
+  {
+    id: "s2",
+    title: "Chapter 2: THE STREET PROTESTS",
+    narrative: "Outrage over the school bombings spills into the streets. People are openly accusing the regime of the false-flag operation. The authorities are responding with live ammunition. Your friends are going to the square.",
+    choices: [
+      {
+        label: "A",
+        text: "Stay hidden",
+        outcome: "Choosing to stay hidden prioritizes your safety in a moment where the risks are immediate and life-threatening. As a citizen, this can be understood as an act of self-preservation, recognizing that your life and well-being hold value, and that survival itself is not morally insignificant.\n\nHowever, this choice carries a deeper moral tension. By not joining the protests, you distance yourself from the collective experience of your community. While others—your friends included—are stepping forward despite the danger, you remain on the sidelines. This can feel like a withdrawal from shared responsibility, especially in a moment where people are standing up against injustice.",
+        scores: { U: 0, K: 0, P: 0, V: 0 }
+      },
+      {
+        label: "B",
+        text: "Join the protests, stand with your community",
+        outcome: "Choosing to join the protests is an act of solidarity. As a citizen, it shows a willingness to stand with your community during a moment of crisis, especially when injustice is being openly challenged. Morally, this aligns with virtue ethics, particularly courage and justice as you choose to act instead of staying passive in the face of harm. It also reflects personalism, because you recognize the dignity of others and refuse to distance yourself from their suffering.\n\nHowever, this decision comes with serious consequences. You are placing yourself in immediate physical danger, especially in a situation where authorities may respond with force, even live ammunition.",
+        scores: { U: 0, K: 1, P: 1, V: 1 }
       }
     ]
   },
   {
     id: "s3",
-    title: "Scenario 2: The Street Protests",
-    narrative: "Outrage over the school bombings spills into the streets. People are openly accusing the regime of the false-flag operation. The authorities are responding with live ammunition. Your friends are going to the square.",
+    title: "Chapter 3: A FRIEND GETS ARRESTED",
+    narrative: "The next day, you hear that someone you know was taken. No one knows where they are. People start whispering, sharing names, asking questions. You're asked: 'Do you know anything?'",
     choices: [
       {
         label: "A",
-        text: "Stay home. Protect yourself and your family.",
-        outcome: "You survive another day. The consequence of speaking out is too high a price for your family to pay.",
-        scores: { U: 1, K: 0, P: 0, V: 0 }
+        text: "Say nothing",
+        outcome: "If you stay silent, you protect yourself. You avoid being connected, avoid being questioned, avoid being pulled into something dangerous. From a consequentialist perspective, this makes sense—if speaking could lead to more harm, then staying quiet minimizes risk. It also reflects virtue ethics in the form of prudence, where choosing safety is seen as a careful and rational response. But at the same time, it shows a limit in practicing virtue ethics as a whole. By prioritizing safety, you are not fully acting on virtues like courage and justice—you are choosing caution over moral action. The silence doesn't feel neutral. It stays with you. You realize that by saying nothing, you're also allowing the situation to remain unresolved. You're safe—but it feels like you chose yourself over someone who no longer has that choice.\n\nEthical Frameworks:\n- Consequentialism: Speaking could make things worse.\n- Virtue Ethics (prudence): Silence avoids further danger.",
+        scores: { U: 1, K: 0, P: 0, V: 1 }
       },
       {
         label: "B",
-        text: "Join the protests. Stand with your community.",
-        outcome: "You march. Motivated by justice rather than the convenience of staying safe, you emphasize the Personalist view of community.",
-        scores: { U: 0, K: 0, P: 1, V: 1 }
-      },
-      {
-        label: "C",
-        text: "Organize openly. Call for more people to join the protests.",
-        outcome: "More people become aware and mobilize. But your name is now attached to the leadership of the protests. You risk being watched, questioned, or targeted by the regime.",
+        text: "Speak up publicly about it",
+        outcome: "You raise awareness. More people begin to pay attention, and the situation is no longer ignored. But your involvement becomes visible. Your name is now connected to what happened, and that comes with risk that you could be watched, questioned, or targeted. You help bring attention to the issue, but you also put yourself in a vulnerable position.\n\nEthical Frameworks:\n- Kantian Duty Ethics: Injustice should be called out.\n- Personalism: Defending another person's dignity matters.",
         scores: { U: 0, K: 1, P: 1, V: 0 }
       }
     ]
   },
   {
     id: "s4",
-    title: "Scenario 4: Your Family Intervenes",
-    narrative: "Your parents find out protests are happening nearby. They sit you down. \"Stay out of it. It's not worth it.\" They're not angry. They're scared.",
-    choices: [
-      {
-        label: "A",
-        text: "Agree and promise to stay away",
-        outcome: "Tension at home decreases. You stay safe. But you feel like you gave something up.",
-        scores: { U: 1, K: 0, P: 1, V: 0 }
-      },
-      {
-        label: "B",
-        text: "Stay vague and avoid the conversation",
-        outcome: "You avoid immediate conflict. But trust becomes unclear. You're not fully honest — but not fully dishonest either.",
-        scores: { U: 0, K: 0, P: 0, V: 0 }
-      },
-      {
-        label: "C",
-        text: "Be honest and say you want to be involved",
-        outcome: "The conversation becomes emotional. Your family becomes more worried. You stand your ground — but increase tension and concern.",
-        scores: { U: 0, K: 1, P: 1, V: 1 }
-      }
-    ]
-  },
-  {
-    id: "s5",
-    title: "Scenario 5: The Next Protest",
-    narrative: "Another protest is planned. Bigger this time. More attention. More risk. You already know what it's like. This isn't your first decision anymore.",
-    choices: [
-      {
-        label: "A",
-        text: "Stop getting involved completely",
-        outcome: "You step back. Life becomes quieter again. But you feel more distant from what's happening.",
-        scores: { U: 1, K: 0, P: 1, V: 0 }
-      },
-      {
-        label: "B",
-        text: "Stay involved quietly",
-        outcome: "You continue helping in small ways. You reduce risk — but also limit your impact. You stay in the middle.",
-        scores: { U: 0, K: 0, P: 1, V: 0 }
-      },
-      {
-        label: "C",
-        text: "Fully commit to joining again",
-        outcome: "You become more deeply involved. You take on greater risk. But you are clear about where you stand.",
-        scores: { U: 0, K: 1, P: 1, V: 1 }
-      }
-    ]
-  },
-  {
-    id: "final",
-    title: "Final Decision: The Journalist",
+    title: "Chapter 4: ON THE RECORD",
     narrative: "A journalist wants you to speak on record — your name, your face — about what you've witnessed. It could amplify everything. It will also make you a target.",
     choices: [
       {
         label: "A",
         text: "Speak",
-        outcome: "Your testimony attached to your real identity carries more credibility and therefore more aggregate impact than anonymous accounts. The global benefit outweighs your personal risk.",
-        scores: { U: 1, K: 0, P: 0, V: 0 }
+        outcome: "Your testimony carries weight. It feels real to people who watch it. It spreads further than anonymous accounts would. It gives shape to something that is usually hidden. There's a sense that what you said mattered—that it reached people beyond where you are. But at the same time, you lose anonymity. You become identifiable. Your words don't just exist as information—they exist as something tied to you. That exposure brings risk. You could be watched, questioned, or targeted. What you shared cannot be taken back.\n\nEthical Frameworks:\n- Utilitarianism: Maximizes global awareness and impact.\n- Personalism: Affirms the dignity of victims through witness.\n- Virtue Ethics: Demonstrates immense moral courage.",
+        scores: { U: 1, K: 1, P: 1, V: 1 }
       },
       {
         label: "B",
-        text: "Examine your motive",
-        outcome: "Before deciding, ask yourself honestly why you want to. If from duty — because the truth demands a witness and you are one — then speak. If from guilt or the desire to feel you did something, examine that first.",
-        scores: { U: 0, K: 1, P: 0, V: 1 }
+        text: "Refuse",
+        outcome: "You protect yourself. You remain out of reach, out of focus, out of immediate danger. From a consequentialist perspective, this choice minimizes harm—not just to you, but potentially to your family, who could also be affected by your exposure. Life continues, at least on the surface. You keep your routine, avoid attention, and maintain a sense of control over your safety. But the story is told without you—or maybe not told at all. What you witnessed stays with you instead of reaching others. And that creates a different kind of weight.",
+        scores: { U: 0, K: 0, P: 1, V: 0 }
       },
       {
         label: "C",
-        text: "Demand answers",
-        outcome: "Demand answers from the journalist before agreeing. How will they protect you? Who else is speaking? What do they owe you as a person and not just a source? Your dignity is not a resource for their story.",
+        text: "Demand answers from the journalist before agreeing",
+        outcome: "You take control of the situation. You make sure your safety and dignity are considered before you agree to anything. From a personalist perspective, this affirms that you are not a tool for someone else's narrative as your dignity as a person must be respected, not traded for impact. At the same time, this reflects virtue ethics, particularly prudence, where you act carefully and thoughtfully instead of rushing into a risky decision. You are not rejecting the truth since you are trying to engage with it responsibly.",
         scores: { U: 0, K: 0, P: 1, V: 1 }
       }
     ]
