@@ -29,6 +29,14 @@ export function ReflectionForm() {
     }
   }, []);
 
+  const handleContinue = () => {
+    dispatch({ type: 'END_GAME' });
+  };
+
+  const handleReset = () => {
+    dispatch({ type: 'RESET_GAME' });
+  };
+
   // Success view when form is submitted
   if (formState.succeeded) {
     return (
@@ -41,23 +49,30 @@ export function ReflectionForm() {
           </p>
           <div style={{ textAlign: 'center', marginTop: '2rem' }}>
             <button
-              id="reflection-continue-btn"
-              className="choice-button"
-              onClick={handleContinue}
-              style={{ justifyContent: 'center', width: 'auto', display: 'inline-flex' }}
+              onClick={handleReset}
+              style={{
+                marginTop: '24px',
+                fontFamily: 'Cinzel',
+                background: '#2c1a0e',
+                color: '#c9a84c',
+                border: '1px solid #c9a84c',
+                padding: '12px 28px',
+                cursor: 'pointer',
+                letterSpacing: '1px',
+                fontSize: '13px',
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                transition: 'all 0.3s ease'
+              }}
             >
-              <span className="choice-label">→</span>
-              <span>View Your Profile</span>
+              Return to Start
             </button>
           </div>
         </div>
       </div>
     );
   }
-
-  const handleContinue = () => {
-    dispatch({ type: 'END_GAME' });
-  };
 
   return (
     <div className="dossier-card slide-up reflection-card" ref={cardRef}>
