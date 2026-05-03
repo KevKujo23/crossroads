@@ -9,9 +9,27 @@ import AmbientSound from './components/AmbientSound';
 import { storyline1 } from './data/storyline1';
 import { storyline2 } from './data/storyline2';
 import { storyline3 } from './data/storyline3';
+import { STORYLINES } from './data/characters';
+import { playSound } from './utils/sound';
 
 function AppContent() {
   const { state } = useGame();
+
+  // Handle global sound events
+  React.useEffect(() => {
+    // Initial load sound
+    playSound('static');
+  }, []);
+
+  React.useEffect(() => {
+    if (state.phase === 'end') {
+      playSound('explosion');
+    }
+  }, [state.phase]);
+
+  const activeCharacter = useMemo(() => {
+    return STORYLINES.find(s => s.key === state.storyline);
+  }, [state.storyline]);
 
   const currentData = useMemo(() => {
     if (state.storyline === 'iranian') return storyline1;
@@ -35,7 +53,11 @@ function AppContent() {
 
       return (
         <TransitionWrapper transitionKey={`chapter-${state.currentChapterIndex}`}>
-          <Chapter chapterData={chapterData} isLastChapter={isLastChapter} />
+          <Chapter 
+            chapterData={chapterData} 
+            isLastChapter={isLastChapter} 
+            character={activeCharacter}
+          />
         </TransitionWrapper>
       );
     }
@@ -93,7 +115,10 @@ function AppContent() {
         ))}
       </div>
 
-      <div className={`app-container${state.phase === 'select' ? ' app-container--wide' : ''}`}>
+      <div className={`app-container${
+        state.phase === 'select' ? ' app-container--wide' : 
+        state.phase === 'playing' ? ' app-container--chapter' : ''
+      }`}>
         {showHeader && (
           <header style={{ marginBottom: '3rem', textAlign: 'center' }}>
             <h1 className="game-title">GREY'S ANTHROPOLOGY</h1>

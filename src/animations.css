@@ -88,11 +88,11 @@
    ============================================================ */
 
 .framework-side-panel {
-  width: 280px;
-  min-width: 280px;
+  width: 320px;
+  min-width: 320px;
   background: #f5e6c8;
   border-left: 3px solid #c9a84c;
-  padding: 24px 20px;
+  padding: 28px 24px;
   animation: slideInRight 0.35s ease-out both;
   border-radius: 8px 0 0 8px;
   box-shadow: -4px 0 20px rgba(0, 0, 0, 0.3);
@@ -154,4 +154,12 @@
 
 .framework-side-panel .fw-close-btn:hover {
   background: rgba(201, 168, 76, 0.15);
+}
+
+/* Expanded container for chapter view */
+.app-container--chapter {
+  max-width: 85vw;
+  width: 85vw;
+  margin: 0 auto;
+  padding: 2rem 1rem;
 }

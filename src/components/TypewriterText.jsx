@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { startLoop, stopLoop } from '../utils/sound';
 
 export function TypewriterText({ text, onComplete }) {
   const [displayedText, setDisplayedText] = useState("");
@@ -12,16 +13,19 @@ export function TypewriterText({ text, onComplete }) {
   useEffect(() => {
     if (isSkipped) {
       setDisplayedText(text);
+      stopLoop('typing');
       if (onComplete) onComplete();
       return;
     }
 
     if (displayedText.length < text.length) {
+      startLoop('typing', 0.3);
       const timeout = setTimeout(() => {
         setDisplayedText(text.slice(0, displayedText.length + 1));
       }, 35); // ~35ms per character
       return () => clearTimeout(timeout);
     } else {
+      stopLoop('typing');
       if (onComplete) onComplete();
     }
   }, [displayedText, isSkipped, text, onComplete]);

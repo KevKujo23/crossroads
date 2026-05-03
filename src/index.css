@@ -85,7 +85,7 @@ body::after {
 
 /* Wider container for the conjoined intro+select page */
 .app-container--wide {
-  max-width: 900px;
+  max-width: 1200px;
   padding: 0 1rem 3rem;
 }
 
@@ -181,7 +181,8 @@ body::after {
 
 .narrative-text {
   font-size: 1.15rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 20px;
+  line-height: 1.8;
   white-space: pre-wrap;
   color: var(--color-ink-faded);
   max-width: 65ch;
@@ -549,23 +550,23 @@ body::after {
 
 .character-illustration-wrapper {
   width: 100%;
-  height: 200px;
+  height: 420px;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
   overflow: visible;
 }
 
 .character-illustration {
-  max-height: 200px;
+  max-height: 420px;
   max-width: 100%;
   object-fit: contain;
   object-position: bottom center;
   display: block;
   /* preserve transparent bg */
   mix-blend-mode: multiply;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2));
+  filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.3));
 }
 
 .character-story-tag {
@@ -685,4 +686,10 @@ body::after {
   color: var(--color-ink-faded);
   font-style: italic;
   line-height: 1.75;
+}
+
+@media (max-width: 768px) {
+  .chapter-portrait-wrapper {
+    display: none !important;
+  }
 }

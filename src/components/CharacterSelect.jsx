@@ -3,40 +3,9 @@ import { useGame } from '../context/GameContext';
 import { FrameworkGlossary } from './FrameworkGlossary';
 import { gsap } from 'gsap';
 
-import iranCitizenImg from '../assets/irancitizen.png';
-import iranJournalistImg from '../assets/iranjournalist.png';
-import usJournalistImg from '../assets/usjournalist.png';
+import { STORYLINES } from '../data/characters';
 import athenaBg from '../assets/Athena.png';
-
-const STORYLINES = [
-  {
-    key: 'iranian',
-    name: 'Nasrin',
-    role: 'Iranian Journalist',
-    description: 'Reporting on the front lines where basic information is unstable and truth has a high cost.',
-    storyTitle: 'The Price of Truth',
-    image: iranJournalistImg,
-    imageAlt: 'Iranian journalist in green hooded jacket with camera',
-  },
-  {
-    key: 'us',
-    name: 'Daniel',
-    role: 'US Journalist',
-    description: 'Documenting contradictions between official statements and on-the-ground reality.',
-    storyTitle: 'The Institutional Lens',
-    image: usJournalistImg,
-    imageAlt: 'Blonde male journalist with camera in brown coat',
-  },
-  {
-    key: 'civilian',
-    name: 'Parisa',
-    role: 'Iranian Citizen',
-    description: 'Witnessing atrocities firsthand while navigating a landscape of propaganda and risk.',
-    storyTitle: 'A Citizen\'s Witness',
-    image: iranCitizenImg,
-    imageAlt: 'Woman in hijab and blue robe',
-  },
-];
+import { playSound } from '../utils/sound';
 
 export function CharacterSelect() {
   const { dispatch } = useGame();
@@ -45,6 +14,7 @@ export function CharacterSelect() {
   const introRefs = useRef([]);
 
   const handleSelect = (storyline) => {
+    playSound('click');
     dispatch({ type: 'SELECT_STORYLINE', payload: storyline });
   };
 
@@ -87,19 +57,43 @@ export function CharacterSelect() {
     <div
       className="conjoined-page"
       style={{
+        minHeight: '100vh',
         backgroundImage: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(${athenaBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
         animation: 'fadeInScreen 0.6s ease-out both',
+        position: 'relative'
       }}
     >
+      {/* Cinematic depth layers */}
+      {/* Vignette overlay */}
+      <div style={{
+        position: 'absolute', inset: 0,
+        background: 'radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.7) 100%)',
+        zIndex: 1, pointerEvents: 'none'
+      }} />
+
+      {/* Top atmospheric fade */}
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: '200px',
+        background: 'linear-gradient(to bottom, rgba(0,0,0,0.6), transparent)',
+        zIndex: 1, pointerEvents: 'none'
+      }} />
+
+      {/* Bottom atmospheric fade */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: 0, right: 0, height: '200px',
+        background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent)',
+        zIndex: 1, pointerEvents: 'none'
+      }} />
 
       {/* ── INTRO SECTION ─────────────────────────────── */}
       <div className="intro-page" style={{ minHeight: 'unset', position: 'relative' }}>
+
         <div className="intro-athena-overlay" aria-hidden="true" />
 
-        <div className="intro-content" style={{ paddingBottom: '1rem' }}>
+        <div className="intro-content" style={{ paddingBottom: '1rem', position: 'relative', zIndex: 2 }}>
 
           {/* Title */}
           <div
@@ -127,7 +121,7 @@ export function CharacterSelect() {
       </div>
 
       {/* ── CHARACTER SELECT SECTION ──────────────────── */}
-      <div className="dossier-card conjoined-select-card" style={{ backgroundColor: 'rgba(232, 217, 160, 0.78)' }}>
+      <div className="dossier-card conjoined-select-card" style={{ backgroundColor: 'rgba(232, 217, 160, 0.78)', position: 'relative', zIndex: 2 }}>
         <h2>Select Subject Profile</h2>
         <p style={{ marginBottom: '2rem', color: 'var(--color-ink-faded)' }}>
           Accessing central database. Please select a profile to review their encrypted logs.
