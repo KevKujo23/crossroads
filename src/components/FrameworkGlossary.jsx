@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const FRAMEWORKS = [
+export const FRAMEWORKS = [
   {
     label: 'Utilitarianism (U)',
     body: 'Associated with John Stuart Mill. An action is right if it produces the greatest good for the greatest number of people. What matters is the outcome, not the intention. In practice, this means weighing the costs and benefits of a decision across everyone it affects.'
@@ -53,7 +53,8 @@ export function FrameworkGlossary() {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex: 1000
+            zIndex: 1000,
+            animation: 'borderGlow 4s ease-in-out infinite',
           }}
         >
           <div
@@ -69,7 +70,8 @@ export function FrameworkGlossary() {
               border: '1px solid var(--color-border-parchment)',
               display: 'flex',
               flexDirection: 'column',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
+              boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+              animation: 'fadeInScreen 0.4s ease-out both',
             }}
           >
             <button

@@ -6,6 +6,7 @@ import { gsap } from 'gsap';
 import iranCitizenImg from '../assets/irancitizen.png';
 import iranJournalistImg from '../assets/iranjournalist.png';
 import usJournalistImg from '../assets/usjournalist.png';
+import athenaBg from '../assets/Athena.png';
 
 const STORYLINES = [
   {
@@ -83,7 +84,16 @@ export function CharacterSelect() {
   };
 
   return (
-    <div className="conjoined-page">
+    <div
+      className="conjoined-page"
+      style={{
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(${athenaBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+        animation: 'fadeInScreen 0.6s ease-out both',
+      }}
+    >
 
       {/* ── INTRO SECTION ─────────────────────────────── */}
       <div className="intro-page" style={{ minHeight: 'unset', position: 'relative' }}>
@@ -117,7 +127,7 @@ export function CharacterSelect() {
       </div>
 
       {/* ── CHARACTER SELECT SECTION ──────────────────── */}
-      <div className="dossier-card conjoined-select-card">
+      <div className="dossier-card conjoined-select-card" style={{ backgroundColor: 'rgba(232, 217, 160, 0.78)' }}>
         <h2>Select Subject Profile</h2>
         <p style={{ marginBottom: '2rem', color: 'var(--color-ink-faded)' }}>
           Accessing central database. Please select a profile to review their encrypted logs.

@@ -5,6 +5,7 @@ import { Chapter } from './components/Chapter';
 import { EndScreen } from './components/EndScreen';
 import { ReflectionForm } from './components/ReflectionForm';
 import { TransitionWrapper } from './components/TransitionWrapper';
+import AmbientSound from './components/AmbientSound';
 import { storyline1 } from './data/storyline1';
 import { storyline2 } from './data/storyline2';
 import { storyline3 } from './data/storyline3';
@@ -75,6 +76,7 @@ function AppContent() {
 
   return (
     <>
+      <AmbientSound />
       <div className="particles-container">
         {particles.map(p => (
           <div

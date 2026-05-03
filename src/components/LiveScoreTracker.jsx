@@ -15,7 +15,8 @@ export function LiveScoreTracker() {
       zIndex: 100,
       display: 'flex',
       flexDirection: 'column',
-      alignItems: 'flex-end'
+      alignItems: 'flex-end',
+      animation: 'fadeInScreen 0.7s ease-out both',
     }}>
       <button 
         onClick={() => setIsOpen(!isOpen)}
@@ -50,7 +51,8 @@ export function LiveScoreTracker() {
         overflow: 'hidden',
         transition: 'all 0.4s ease',
         transformOrigin: 'top right',
-        transform: isOpen ? 'scaleY(1)' : 'scaleY(0.9)'
+        transform: isOpen ? 'scaleY(1)' : 'scaleY(0.9)',
+        animation: isOpen ? 'borderGlow 3s ease-in-out infinite' : 'none',
       }}>
         <h4 style={{ margin: '0 0 1rem 0', fontSize: '0.9rem', fontFamily: 'var(--font-display)', color: 'var(--color-gold)' }}>Current Alignment</h4>
         

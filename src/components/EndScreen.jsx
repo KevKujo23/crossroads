@@ -26,7 +26,7 @@ export function EndScreen() {
   };
 
   return (
-    <div className="dossier-card slide-up">
+    <div className="dossier-card" style={{ animation: 'fadeInScreen 0.8s ease-out both' }}>
       <h2 style={{ textAlign: 'center', width: '100%', border: 'none', padding: 0, margin: '0 0 2rem 0' }}>Your Crossroads Profile</h2>
       
       <div style={{ margin: '2rem 0' }}>
@@ -49,7 +49,7 @@ export function EndScreen() {
         <div className="score-v"><ScoreBar label="Virtue Ethics (V)" score={state.scores.V || 0} maxScore={maxScore} /></div>
       </div>
 
-      <div style={{ margin: '3rem 0', background: 'transparent', padding: '1.5rem', border: '1px solid var(--color-border-parchment)', textAlign: 'center' }}>
+      <div style={{ margin: '3rem 0', background: 'transparent', padding: '1.5rem', border: '1px solid var(--color-border-parchment)', textAlign: 'center', animation: 'borderGlow 4s ease-in-out infinite' }}>
         <h3 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'var(--color-ink-faded)' }}>3. Final Classification</h3>
         <div style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold)', fontSize: '2.5rem', marginBottom: '1rem' }}>
           {profileLabel}
