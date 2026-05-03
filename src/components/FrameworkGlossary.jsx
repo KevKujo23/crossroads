@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const FRAMEWORKS = [
   {
     label: 'Utilitarianism (U)',
-    body: 'Associated with Jeremy Bentham and John Stuart Mill. An action is right if it produces the greatest good for the greatest number of people. What matters is the outcome, not the intention. In practice, this means weighing the costs and benefits of a decision across everyone it affects.'
+    body: 'Associated with John Stuart Mill. An action is right if it produces the greatest good for the greatest number of people. What matters is the outcome, not the intention. In practice, this means weighing the costs and benefits of a decision across everyone it affects.'
   },
   {
     label: 'Kantian Duty Ethics (K)',
@@ -24,7 +24,7 @@ export function FrameworkGlossary() {
 
   return (
     <>
-      <button 
+      <button
         onClick={() => setIsOpen(true)}
         style={{
           background: 'none',
@@ -43,7 +43,7 @@ export function FrameworkGlossary() {
       </button>
 
       {isOpen && (
-        <div 
+        <div
           className="fade-in"
           style={{
             position: 'fixed',
@@ -56,14 +56,14 @@ export function FrameworkGlossary() {
             zIndex: 1000
           }}
         >
-          <div 
-            className="slide-up" 
-            style={{ 
-              maxWidth: '560px', 
-              width: '90%', 
+          <div
+            className="slide-up"
+            style={{
+              maxWidth: '560px',
+              width: '90%',
               maxHeight: '80vh',
-              position: 'relative', 
-              background: 'var(--color-parchment)', 
+              position: 'relative',
+              background: 'var(--color-parchment)',
               padding: '2.5rem',
               borderRadius: 'var(--radius-card)',
               border: '1px solid var(--color-border-parchment)',
@@ -72,26 +72,26 @@ export function FrameworkGlossary() {
               boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
             }}
           >
-            <button 
+            <button
               onClick={() => setIsOpen(false)}
-              style={{ 
-                position: 'absolute', 
-                top: '15px', 
-                right: '20px', 
-                background: 'none', 
-                border: 'none', 
-                fontSize: '2rem', 
-                cursor: 'pointer', 
+              style={{
+                position: 'absolute',
+                top: '15px',
+                right: '20px',
+                background: 'none',
+                border: 'none',
+                fontSize: '2rem',
+                cursor: 'pointer',
                 color: 'var(--color-gold)',
                 lineHeight: 1,
                 padding: '0.5rem',
-                zIndex: 10 
+                zIndex: 10
               }}
             >
               &times;
             </button>
 
-            <h2 style={{ 
+            <h2 style={{
               fontFamily: 'var(--font-display)',
               color: 'var(--color-gold)',
               textAlign: 'center',
@@ -103,11 +103,11 @@ export function FrameworkGlossary() {
             }}>
               Ethical Frameworks
             </h2>
-            
+
             <div className="custom-scrollbar" style={{ overflowY: 'auto', paddingRight: '0.5rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {FRAMEWORKS.map((f, i) => (
-                  <div 
+                  <div
                     key={i}
                     style={{
                       backgroundColor: '#f5e6c8',
@@ -117,18 +117,18 @@ export function FrameworkGlossary() {
                       borderRadius: '6px'
                     }}
                   >
-                    <h3 style={{ 
-                      color: 'var(--color-gold)', 
+                    <h3 style={{
+                      color: 'var(--color-gold)',
                       fontFamily: 'var(--font-chapter)',
                       fontSize: '1.2rem',
                       margin: '0 0 8px 0'
                     }}>
                       {f.label}
                     </h3>
-                    <p style={{ 
-                      color: '#2c1a0e', 
+                    <p style={{
+                      color: '#2c1a0e',
                       fontFamily: 'var(--font-body)',
-                      fontSize: '1rem', 
+                      fontSize: '1rem',
                       lineHeight: '1.7',
                       margin: 0
                     }}>
