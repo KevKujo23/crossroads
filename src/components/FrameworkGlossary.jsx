@@ -1,5 +1,24 @@
 import React, { useState } from 'react';
 
+const FRAMEWORKS = [
+  {
+    label: 'Utilitarianism (U)',
+    body: 'Associated with Jeremy Bentham and John Stuart Mill. An action is right if it produces the greatest good for the greatest number of people. What matters is the outcome, not the intention. In practice, this means weighing the costs and benefits of a decision across everyone it affects.'
+  },
+  {
+    label: 'Kantian Duty Ethics (K)',
+    body: 'Associated with Immanuel Kant. An action is right if it follows a universal moral rule, one you could expect everyone to follow. People must always be treated as ends in themselves, never as tools for someone else\'s goal. Honesty is a duty, not a choice.'
+  },
+  {
+    label: 'Personalism (P)',
+    body: 'Rooted in the idea that every person has inherent dignity that cannot be taken away. Decisions must protect individuals and communities, not just serve what is convenient. Justice, not utility, is the baseline.'
+  },
+  {
+    label: 'Virtue Ethics (V)',
+    body: 'Associated with Aristotle. The focus is on the character of the person acting, not the rules they follow or the results they produce. Good actions come from good habits built over time. Courage, honesty, and integrity matter even when they come at a personal cost. In practice this framework often overlaps with Personalism.'
+  }
+];
+
 export function FrameworkGlossary() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -37,15 +56,22 @@ export function FrameworkGlossary() {
             zIndex: 1000
           }}
         >
-          <div className="dossier-card slide-up" style={{ 
-            maxWidth: '600px', 
-            width: '90%', 
-            position: 'relative', 
-            background: 'var(--color-parchment)', 
-            padding: '2.5rem 2rem 2.5rem 2.5rem',
-            borderRadius: 'var(--radius-card)',
-            border: '1px solid var(--color-border-parchment)'
-          }}>
+          <div 
+            className="slide-up" 
+            style={{ 
+              maxWidth: '560px', 
+              width: '90%', 
+              maxHeight: '80vh',
+              position: 'relative', 
+              background: 'var(--color-parchment)', 
+              padding: '2.5rem',
+              borderRadius: 'var(--radius-card)',
+              border: '1px solid var(--color-border-parchment)',
+              display: 'flex',
+              flexDirection: 'column',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.5)'
+            }}
+          >
             <button 
               onClick={() => setIsOpen(false)}
               style={{ 
@@ -64,27 +90,52 @@ export function FrameworkGlossary() {
             >
               &times;
             </button>
-            <div className="custom-scrollbar" style={{ maxHeight: '75vh', overflowY: 'auto', paddingRight: '1rem' }}>
-              <h2 style={{ borderBottom: '1px solid var(--color-border-parchment)', paddingBottom: '0.5rem', marginBottom: '1.5rem', marginTop: 0 }}>Ethical Frameworks</h2>
-              
-              <div style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ color: 'var(--color-gold)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Utilitarianism (U)</h3>
-                <p style={{ color: 'var(--color-ink)', fontSize: '0.95rem', lineHeight: '1.5' }}>Originates with Bentham. Focuses on the consequences of actions, aiming for the greatest aggregate good for the greatest number. (Calculus of impact).</p>
-              </div>
 
-              <div style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ color: 'var(--color-gold)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Kantian Duty Ethics (K)</h3>
-                <p style={{ color: 'var(--color-ink)', fontSize: '0.95rem', lineHeight: '1.5' }}>Immanuel Kant. Ethics based on categorical imperatives—universal duties. Humans must be treated as ends in themselves, never merely as means. Truth is a non-negotiable duty.</p>
-              </div>
-
-              <div style={{ marginBottom: '1.5rem' }}>
-                <h3 style={{ color: 'var(--color-gold)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Personalism (P)</h3>
-                <p style={{ color: 'var(--color-ink)', fontSize: '0.95rem', lineHeight: '1.5' }}>Emphasizes the inherent, inviolable dignity of the human person. Decisions circle back to protecting individuals and communities, motivated by justice rather than mere convenience.</p>
-              </div>
-
-              <div style={{ marginBottom: '0.5rem' }}>
-                <h3 style={{ color: 'var(--color-gold)', marginBottom: '0.5rem', fontSize: '1.1rem' }}>Virtue Ethics (V)</h3>
-                <p style={{ color: 'var(--color-ink)', fontSize: '0.95rem', lineHeight: '1.5' }}>Traced back to Aristotle. Focuses on the moral character of the actor rather than rules or consequences. Emphasizes moral habituation, integrity, and acting with courage even at personal cost. Note: Frequently overlaps with Personalism in practice.</p>
+            <h2 style={{ 
+              fontFamily: 'var(--font-display)',
+              color: 'var(--color-gold)',
+              textAlign: 'center',
+              fontSize: '2rem',
+              margin: '0 0 20px 0',
+              paddingBottom: '10px',
+              borderBottom: '1px solid var(--color-gold-glow)',
+              position: 'relative'
+            }}>
+              Ethical Frameworks
+            </h2>
+            
+            <div className="custom-scrollbar" style={{ overflowY: 'auto', paddingRight: '0.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                {FRAMEWORKS.map((f, i) => (
+                  <div 
+                    key={i}
+                    style={{
+                      backgroundColor: '#f5e6c8',
+                      borderLeft: '3px solid #c9a84c',
+                      padding: '16px 20px',
+                      boxShadow: '0 2px 6px rgba(0,0,0,0.12)',
+                      borderRadius: '6px'
+                    }}
+                  >
+                    <h3 style={{ 
+                      color: 'var(--color-gold)', 
+                      fontFamily: 'var(--font-chapter)',
+                      fontSize: '1.2rem',
+                      margin: '0 0 8px 0'
+                    }}>
+                      {f.label}
+                    </h3>
+                    <p style={{ 
+                      color: '#2c1a0e', 
+                      fontFamily: 'var(--font-body)',
+                      fontSize: '1rem', 
+                      lineHeight: '1.7',
+                      margin: 0
+                    }}>
+                      {f.body}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

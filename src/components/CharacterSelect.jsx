@@ -140,6 +140,10 @@ export function CharacterSelect() {
                   src={s.image}
                   alt={s.imageAlt}
                   className="character-illustration"
+                  style={{ 
+                    animation: `floatPortrait 3s ease-in-out infinite`,
+                    animationDelay: i === 0 ? '0s' : i === 1 ? '0.6s' : '1.2s'
+                  }}
                 />
               </div>
 
