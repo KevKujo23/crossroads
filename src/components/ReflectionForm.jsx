@@ -29,7 +29,10 @@ export function ReflectionForm() {
     }
   }, []);
 
-  const handleContinue = () => {
+  const handleContinue = (data) => {
+    if (data) {
+      dispatch({ type: 'SET_REFLECTIONS', payload: data });
+    }
     dispatch({ type: 'END_GAME' });
   };
 
@@ -37,42 +40,15 @@ export function ReflectionForm() {
     dispatch({ type: 'RESET_GAME' });
   };
 
-  // Success view when form is submitted
-  if (formState.succeeded) {
-    return (
-      <div className="dossier-card slide-up reflection-card" ref={cardRef}>
-        <div className="reflection-confirmation fade-in">
-          <div className="reflection-confirm-icon" aria-hidden="true">✧</div>
-          <h3 className="reflection-confirm-title">Reflection Recorded.</h3>
-          <p className="reflection-confirm-body" style={{ color: '#2c1a0e', fontStyle: 'normal' }}>
-            Your response has been logged securely. Thank you for engaging with the story.
-          </p>
-          <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-            <button
-              onClick={handleReset}
-              style={{
-                marginTop: '24px',
-                fontFamily: 'Cinzel',
-                background: '#2c1a0e',
-                color: '#c9a84c',
-                border: '1px solid #c9a84c',
-                padding: '12px 28px',
-                cursor: 'pointer',
-                letterSpacing: '1px',
-                fontSize: '13px',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.3s ease'
-              }}
-            >
-              Return to Start
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  useEffect(() => {
+    if (formState.succeeded) {
+      handleContinue({
+        hardestChoice: field1,
+        surpriseAndValues: field2,
+        otherThoughts: field3
+      });
+    }
+  }, [formState.succeeded]);
 
   return (
     <div className="dossier-card slide-up reflection-card" ref={cardRef}>

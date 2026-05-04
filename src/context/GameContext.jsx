@@ -5,7 +5,12 @@ const initialState = {
   currentChapterIndex: 0,
   choices: [],
   scores: { U: 0, K: 0, P: 0, V: 0 },
-  phase: "select"
+  phase: "select",
+  reflections: {
+    hardestChoice: '',
+    surpriseAndValues: '',
+    otherThoughts: ''
+  }
 };
 
 function gameReducer(state, action) {
@@ -49,6 +54,11 @@ function gameReducer(state, action) {
       return {
         ...state,
         phase: "reflection"
+      };
+    case 'SET_REFLECTIONS':
+      return {
+        ...state,
+        reflections: action.payload
       };
     case 'RESET_GAME':
       return initialState;

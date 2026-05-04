@@ -49,8 +49,31 @@ export function EndScreen() {
         <div className="score-v"><ScoreBar label="Virtue Ethics (V)" score={state.scores.V || 0} maxScore={maxScore} /></div>
       </div>
 
+      {state.reflections && state.reflections.hardestChoice && (
+        <div style={{ margin: '3rem 0', padding: '1.5rem', border: '1px dashed var(--color-border-parchment)', background: 'rgba(0,0,0,0.02)' }}>
+          <h3 style={{ fontSize: '1rem', marginBottom: '1.5rem', color: 'var(--color-ink-faded)', textAlign: 'center' }}>3. Personal Reflection</h3>
+          
+          <div style={{ marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--color-gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>The Hardest Choice</p>
+            <p style={{ fontStyle: 'italic', color: 'var(--color-ink)', lineHeight: '1.6' }}>"{state.reflections.hardestChoice}"</p>
+          </div>
+
+          <div style={{ marginBottom: '1.5rem' }}>
+            <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--color-gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Value Surprise</p>
+            <p style={{ fontStyle: 'italic', color: 'var(--color-ink)', lineHeight: '1.6' }}>"{state.reflections.surpriseAndValues}"</p>
+          </div>
+
+          {state.reflections.otherThoughts && (
+            <div>
+              <p style={{ fontSize: '0.8rem', fontWeight: 'bold', color: 'var(--color-gold)', textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Other Thoughts</p>
+              <p style={{ fontStyle: 'italic', color: 'var(--color-ink)', lineHeight: '1.6' }}>"{state.reflections.otherThoughts}"</p>
+            </div>
+          )}
+        </div>
+      )}
+
       <div style={{ margin: '3rem 0', background: 'transparent', padding: '1.5rem', border: '1px solid var(--color-border-parchment)', textAlign: 'center', animation: 'borderGlow 4s ease-in-out infinite' }}>
-        <h3 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'var(--color-ink-faded)' }}>3. Final Classification</h3>
+        <h3 style={{ fontSize: '1rem', marginBottom: '1rem', color: 'var(--color-ink-faded)' }}>{state.reflections && state.reflections.hardestChoice ? '4' : '3'}. Final Classification</h3>
         <div style={{ fontFamily: 'var(--font-display)', color: 'var(--color-gold)', fontSize: '2.5rem', marginBottom: '1rem' }}>
           {profileLabel}
         </div>
